@@ -2,7 +2,7 @@
 
 spec = Gem::Specification.new do |s| 
   s.name = 'jruby-rfc2445' 
-  s.version = '0.0.2' 
+  s.version = '0.0.3' 
   s.authors = ['Jerry Luk']
   s.email = 'jerryluk@gmail.com'
   s.date = '2009-03-24'
