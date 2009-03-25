@@ -1,0 +1,14 @@
+jruby-rfc2445
+=============
+A JRuby implementation of RFC 2445 (ical) recurrence rules.
+
+This library makes use of the google-rfc-2445 library (http://code.google.com/p/google-rfc-2445/)
+To see the usage, please see the RSpec test cases.
+
+The JTime class uses Joda-time as its underlying implementation. To find out more about Joda time, visit:
+http://joda-time.sourceforge.net/
+
+Getting Started
+===============
+1. Make sure you can install RubyGem from GitHub (you only have to do this once): jruby -S gem sources -a http://gems.github.com
+2. Install JRuby RFC 2445 library: jruby -S gem install jerryluk-jruby-rfc2445
