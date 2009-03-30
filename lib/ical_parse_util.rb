@@ -7,12 +7,12 @@ class ICalParseUtil
   # Class Methods
   class << self
     def parse_date_value(s, tzid = 'UTC')
-      timezone = java.util.TimeZone.getTimeZone(tzid)
+      timezone = java.util.TimeZone.getTimeZone(tzid || 'UTC')
       s ? JIcalParseUtil.parseDateValue(s, timezone) : nil
     end
     
     def parse_jtime(s, tzid = 'UTC')
-      s ? JTime.from_date_time_value(parse_date_value(s, tzid)) : nil
+      s ? JTime.from_date_time_value(parse_date_value(s, tzid || 'UTC')) : nil
     end
     
     # Parse a recurrence block and returns DTSTART, DTEND, RRULE, EXRULE, RDATE, and EXDATE
