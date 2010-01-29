@@ -3,16 +3,26 @@ require File.dirname(__FILE__) + '/rfc2445.jar'
 
 class ICalParseUtil
   include_class('com.google.ical.values.IcalParseUtil'){|package,name| "J#{name}" }
+  include_class('com.google.ical.values.DateTimeValue')
+  include_class('com.google.ical.values.DateValue')
   
   # Class Methods
   class << self
     def parse_date_value(s, tzid = 'UTC')
-      timezone = java.util.TimeZone.getTimeZone(tzid || 'UTC')
-      s ? JIcalParseUtil.parseDateValue(s, timezone) : nil
+      timezone = java.util.TimeZone.get_time_zone(tzid || 'UTC')
+      s ? JIcalParseUtil.parse_date_value(s, timezone) : nil
     end
     
     def parse_jtime(s, tzid = 'UTC')
-      s ? JTime.from_date_time_value(parse_date_value(s, tzid || 'UTC')) : nil
+      return nil unless s
+      value = parse_date_value(s, tzid)
+      case value
+      when DateTimeValue
+        JTime.from_date_time_value(value)
+      when DateValue
+        timezone = org.joda.time.DateTimeZone.forID(tzid)
+        JTime.from_date_value(value, timezone)
+      end
     end
     
     # Parse a recurrence block and returns DTSTART, DTEND, RRULE, EXRULE, RDATE, and EXDATE

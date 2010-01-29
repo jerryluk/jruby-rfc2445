@@ -426,6 +426,12 @@ describe ICalParseUtil do
     jtime3 = ICalParseUtil.parse_datetime(nil)
     jtime3.should be_nil
   end
+  
+  it "should parse date into JTime" do
+    jtime = ICalParseUtil.parse_datetime('DTSTART;VALUE=DATE:20100129')
+    jtime.should be_instance_of(JTime)
+    jtime.hour.should == 0
+  end
 end
 
 describe RecurrenceTime do

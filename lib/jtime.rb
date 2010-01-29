@@ -43,6 +43,12 @@ class JTime
       new(datetime)
     end
     
+    # Initialize a JTime object form DateValue
+    def from_date_value(dv, timezone = org.joda.time.DateTimeZone::UTC)
+      datetime = JDateTime.new(dv.year, numeric_month(dv.month), dv.day, 0, 0, 0, 0, timezone)
+      new(datetime)
+    end
+    
     # Initialize a JTime object from DateTimeValue
     def from_date_time_value(dtv)
       utc(dtv.year, dtv.month, dtv.day, dtv.hour, dtv.minute, dtv.second)

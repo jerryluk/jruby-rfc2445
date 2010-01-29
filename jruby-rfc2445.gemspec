@@ -2,10 +2,10 @@
 
 spec = Gem::Specification.new do |s| 
   s.name = 'jruby-rfc2445' 
-  s.version = '0.0.4' 
+  s.version = '0.1.0' 
   s.authors = ['Jerry Luk']
   s.email = 'jerryluk@gmail.com'
-  s.date = '2009-03-24'
+  s.date = '2010-01-29'
   s.summary = 'A JRuby implementation of RFC 2445 (ical) recurrence rule'
   s.description = s.summary
   s.homepage = 'http://www.linkedin.com/in/jerryluk'
