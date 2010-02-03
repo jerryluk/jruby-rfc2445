@@ -221,10 +221,17 @@ class RRule
     self
   end
   
-  # Gets the end date
+  # Gets the end date, assume it is UTC for now
   def until
     d = @rrule.getUntil
-    d ? JTime.local(d.year, d.month, d.day, d.hour, d.minute, d.second) : nil
+    case d
+    when DateTimeValue
+      JTime.from_date_time_value(d)
+    when DateValue
+      JTime.from_date_value(d)
+    else
+      nil
+    end
   end
   
   # Sets the end date

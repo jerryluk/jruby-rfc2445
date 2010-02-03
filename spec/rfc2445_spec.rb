@@ -419,7 +419,7 @@ describe ICalParseUtil do
     jtime1.should be_instance_of(JTime)
     jtime1.hour.should == 0
     
-    jtime2 = ICalParseUtil.parse_datetime('DTEND;TZID=America/Los_Angeles:20090320T170000')
+    jtime2 = ICalParseUtil.parse_datetime('DTEND;TZID=America/Los_Angeles:20090320T180000')
     jtime2.should be_instance_of(JTime)
     jtime2.hour.should == 0
     
