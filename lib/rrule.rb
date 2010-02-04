@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + '/rfc2445.jar'
 
 class RRule
   include_class('com.google.ical.values.RRule'){|package,name| "J#{name}" }
+  include_class('com.google.ical.values.DateTimeValue')
+  include_class('com.google.ical.values.DateValue')
   
   RRULE = 'RRULE'
   EXRULE = 'EXRULE'

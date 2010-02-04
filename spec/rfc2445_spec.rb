@@ -286,7 +286,7 @@ describe RRule do
   end
   
   it "should set and get the until date" do
-    now = JTime.new
+    now = JTime.new.utc
     @rrule.until = now
     @rrule.until.year.should == now.year
     @rrule.until.month.should == now.month
@@ -421,7 +421,7 @@ describe ICalParseUtil do
     
     jtime2 = ICalParseUtil.parse_datetime('DTEND;TZID=America/Los_Angeles:20090320T180000')
     jtime2.should be_instance_of(JTime)
-    jtime2.hour.should == 0
+    jtime2.hour.should == 1
     
     jtime3 = ICalParseUtil.parse_datetime(nil)
     jtime3.should be_nil
