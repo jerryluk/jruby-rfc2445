@@ -72,7 +72,7 @@ describe JTime do
   end
   
   it "should return a Ruby time object" do
-    now = Time.now
+    now = Time.now.utc
     time = JTime.new
     rtime = time.to_time
     rtime.should be_instance_of(Time)

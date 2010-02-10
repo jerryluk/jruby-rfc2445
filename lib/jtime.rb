@@ -100,10 +100,11 @@ class JTime
     self
   end
   
-  # Returns a Ruby Time object
+  # Returns a Ruby Time object, since Ruby Time object has limited time zone support,
+  # it always return a UTC time
   def to_time
     millis = @time.getMillis
-    Time.at(millis / 1000, millis % 1000 * 1000)
+    Time.at(millis / 1000, millis % 1000 * 1000).utc
   end
   
   # Returns the underlying Java DateTime object
