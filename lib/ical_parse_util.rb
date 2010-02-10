@@ -53,6 +53,20 @@ class ICalParseUtil
       result
     end
     
+    # Parse a RECURRENCE-ID into a JTime.  Various formats of this property
+    # are permitted, except for the "range" parameter
+    
+    def parse_recurrence_id(s, tzid = 'UTC')
+      raise ArgumentError, 'range parameter not supported' if s =~ /RANGE=/ 
+
+      s =~ /TZID=([^:;]+)/
+      tzid = $1 || tzid
+      
+      # Clean up ISO 8601 format and extra parameters
+      s = s.gsub(/;[^:]+:|[\-:]/, '')
+      parse_jtime(s, tzid)
+    end
+    
     def parse_datetime(s)
       s =~ /(;TZID=([^\s]+))?:([^\s]+)/
       parse_jtime($3, $2)

@@ -432,6 +432,23 @@ describe ICalParseUtil do
     jtime.should be_instance_of(JTime)
     jtime.hour.should == 0
   end
+  
+  it "should parse recurrence-id into JTime" do
+    jtime = ICalParseUtil.parse_recurrence_id('2010-02-11T02:00:00Z')
+    jtime.should == JTime.utc(2010, 2, 11, 2)
+    
+    jtime = ICalParseUtil.parse_recurrence_id(';VALUE=DATE:20100211')
+    jtime.should == JTime.utc(2010, 2, 11)
+    
+    jtime = ICalParseUtil.parse_recurrence_id(';VALUE=DATE-TIME:20100211T020000Z')
+    jtime.should == JTime.utc(2010, 2, 11, 2)
+    
+    jtime = ICalParseUtil.parse_recurrence_id(';VALUE=DATE-TIME:2010-02-11T02:00:00Z')
+    jtime.should == JTime.utc(2010, 2, 11, 2)
+    
+    jtime = ICalParseUtil.parse_recurrence_id(';TZID=America/Los_Angeles;VALUE=DATE:20100211')
+    jtime.should == JTime.utc(2010, 2, 11, 8)
+  end
 end
 
 describe RecurrenceTime do
