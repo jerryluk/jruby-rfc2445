@@ -490,6 +490,11 @@ describe RecurrenceTime do
     rtime = RecurrenceTime.new("RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=SA;BYSETPOS=1\nEXDATE;VALUE=DATE-TIME;TZID=America/Los_Angeles:",
       @start_date)
     rtime.should be_instance_of(RecurrenceTime)
+    rtime.next
+    first_next = rtime.next
+    first_next.mon.should == 5
+    first_next.day.should == 5
+    first_next.year.should == 2001
   end
   
   it "should able to generate a JTime by invoking next" do
