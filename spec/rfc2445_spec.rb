@@ -486,6 +486,12 @@ describe RecurrenceTime do
     first_next.year.should == 2001
   end
   
+  it "should be initialized by RRule and empty EXDate" do
+    rtime = RecurrenceTime.new("RRULE:FREQ=MONTHLY;INTERVAL=1;BYDAY=SA;BYSETPOS=1\nEXDATE;VALUE=DATE-TIME;TZID=America/Los_Angeles:",
+      @start_date)
+    rtime.should be_instance_of(RecurrenceTime)
+  end
+  
   it "should able to generate a JTime by invoking next" do
     nexttime = @rtime.next
     nexttime.should be_instance_of(JTime)

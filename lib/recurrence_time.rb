@@ -22,6 +22,8 @@ class RecurrenceTime
     rdata = rdata.to_ical if (rdata.kind_of? RRule or
                               rdata.kind_of? RDateList)
     rdata = (rdata.map {|r| r.to_ical}).join("\n") if rdata.kind_of? Array
+    # Filter out empty EXDATE because Google Calendar returns empty EXDATE
+    rdata.gsub!(/EXDATE.*?:\s*$/, '')
     @iterator = DateTimeIteratorFactory.createDateTimeIterator(rdata, 
                 start_time.to_java, 
                 start_time.java_zone,
