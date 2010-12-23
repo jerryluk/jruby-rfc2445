@@ -67,9 +67,9 @@ class ICalParseUtil
       parse_jtime(s, tzid)
     end
     
-    def parse_datetime(s)
+    def parse_datetime(s, tzid = nil)
       s =~ /(;TZID=([^\s]+))?:([^\s]+)/
-      parse_jtime($3, $2)
+      parse_jtime($3, $2 || tzid)
     end
   end
 end
